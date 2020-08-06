@@ -3,7 +3,7 @@
 
 A hashing wrapper around some common hashing functions with customizable encoding
 
-If any issues/bugs are found please raid an issue on github here: https://github.com/gymshark/go-hasher/issues
+If any issues/bugs are found please raise an issue on github here: https://github.com/gymshark/go-hasher/issues
 
 ## Docs
 Online: https://pkg.go.dev/github.com/gymshark/go-hasher
