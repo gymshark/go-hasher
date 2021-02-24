@@ -16,26 +16,44 @@ Basic usage
 import "github.com/gymshark/go-hasher"
 
 func main() {
-    h, err := hasher.Sha256([]byte("hello world."), hasher.Base64) 
-
-    if err != nil {
-        fmt.Println(err)
-    }
-
+    h := hasher.Sha256([]byte("hello world.")).Base64()
     fmt.Println(h)
 }
 ```
 
-Hmac usage
+### Hmac usage
 
 ```go
 import "github.com/gymshark/go-hasher"
 
 func main() {
-	hmac, err := hasher.Hmac([]byte("hello world."), "secretKey", sha512.New, hasher.Base64)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(hmac)
+    secretKey := "secretKey"
+    hmac := hasher.Hmac([]byte("hello world."), secretKey, sha512.New).Base64()
+    fmt.Println(hmac)
+    
+    //securely check for equality
+    eq := hasher.Equal([]byte(hmac), []byte("random-token"))
+
+    //Output: false
+    fmt.Println(eq)
+}
+```
+
+### Custom Encoder 
+
+This allows you to pass a func with the signature of `func ([]byte) string` to the encoder when the lib may not supply a helper function for your needs
+
+```go
+import "github.com/gymshark/go-hasher"
+
+func main() {
+	encodingFn := func(b []byte) string {
+        //encode the bytes however you want
+        encodedstring := string(b)
+        return encodedstring
+    }
+	
+    h := hasher.Sha1([]byte("hello world.")).Encode(encodingFn)
+    fmt.Println(h)
 }
 ```
