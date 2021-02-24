@@ -135,59 +135,59 @@ func runHasherTest(t *testing.T, name string, decoded string, encoded []byte, fn
 }
 
 func Example_hex() {
-	hash, err := Sha512([]byte("hello")).Hex()
-	fmt.Println(hash, err)
+	h := Sha512([]byte("hello")).Hex()
+	fmt.Println(h)
 }
 
 func Example_base64() {
-	hash, err := Sha512([]byte("hello")).Base64()
-	fmt.Println(hash, err)
+	h := Sha512([]byte("hello")).Base64()
+	fmt.Println(h)
 }
 
 func Example_base64UrlSafe() {
-	hash, err := Sha512([]byte("hello")).Base64UrlSafe()
-	fmt.Println(hash, err)
+	h := Sha512([]byte("hello")).Base64UrlSafe()
+	fmt.Println(h)
 }
 
 func ExampleMd5() {
-	hash, err := Md5([]byte("hello")).Hex()
-	fmt.Println(hash, err)
+	h := Md5([]byte("hello")).Hex()
+	fmt.Println(h)
 }
 
 func ExampleSha1() {
-	hash, err := Sha1([]byte("hello")).Hex()
-	fmt.Println(hash, err)
+	h := Sha1([]byte("hello")).Hex()
+	fmt.Println(h)
 }
 
 func ExampleSha256() {
-	hash, err := Sha512([]byte("hello")).Hex()
-	fmt.Println(hash, err)
+	h := Sha512([]byte("hello")).Hex()
+	fmt.Println(h)
 }
 
 func ExampleSha512() {
-	hash, err := Sha512([]byte("hello")).Hex()
-	fmt.Println(hash, err)
+	h := Sha512([]byte("hello")).Hex()
+	fmt.Println(h)
 }
 
 func ExampleSha3() {
-	hash, err := Sha3([]byte("hello")).Hex()
-	fmt.Println(hash, err)
+	h := Sha3([]byte("hello")).Hex()
+	fmt.Println(h)
 }
 
 func ExampleHmac_sha256() {
-	hash, err := Hmac([]byte("hello"), "secretKey", sha256.New).Base64()
-	fmt.Println(hash, err)
+	h := Hmac([]byte("hello"), "secretKey", sha256.New).Base64()
+	fmt.Println(h)
 }
 
 func ExampleHmac_sha512() {
-	hash, err := Hmac([]byte("hello"), "secretKey", sha512.New).Base64()
-	fmt.Println(hash, err)
+	h := Hmac([]byte("hello"), "secretKey", sha512.New).Base64()
+	fmt.Println(h)
 }
 
 func ExampleEqual() {
 	d := []byte("hello")
-	h1, _ := Sha256(d).Hex()
-	h2, _ := Sha512(d).Hex()
+	h1 := Sha256(d).Hex()
+	h2 := Sha512(d).Hex()
 
 	eq := Equal([]byte(h1), []byte(h2))
 	fmt.Println(eq)
