@@ -22,42 +22,42 @@ import (
 	"golang.org/x/crypto/sha3"
 )
 
-// Sha512 returns a sha2-512 checksum string
-func Sha512(data []byte, e encoding) (string, error) {
+// Sha512 returns a sha2-512 checksum
+func Sha512(data []byte) Hash {
 	sum := sha512.Sum512(data)
-	return encode(sum[:], e)
+	return Hash(sum[:])
 }
 
-// Sha256 returns a sha2-256 checksum string
-func Sha256(data []byte, e encoding) (string, error) {
+// Sha256 returns a sha2-256 checksum
+func Sha256(data []byte) Hash {
 	sum := sha256.Sum256(data)
-	return encode(sum[:], e)
+	return Hash(sum[:])
 }
 
-// Sha1 returns a sha1 checksum string
-func Sha1(data []byte, e encoding) (string, error) {
+// Sha1 returns a sha1 checksum
+func Sha1(data []byte) Hash {
 	sum := sha1.Sum(data)
-	return encode(sum[:], e)
+	return Hash(sum[:])
 }
 
-// Sha3 returns a sha3-256 checksum string using the ShakeSum256 function
-func Sha3(data []byte, e encoding) (string, error) {
+// Sha3 returns a sha3-256 checksum using the ShakeSum256 function
+func Sha3(data []byte) Hash {
 	sum := make([]byte, 64)
 	sha3.ShakeSum256(sum, data)
-	return encode(sum, e)
+	return Hash(sum)
 }
 
-// Md5 returns a md5 checksum string
-func Md5(data []byte, e encoding) (string, error) {
+// Md5 returns a md5 checksum
+func Md5(data []byte) Hash {
 	sum := md5.Sum(data)
-	return encode(sum[:], e)
+	return Hash(sum[:])
 }
 
 // Hmac returns a new HMAC hash using the given hash.Hash type and key.
-func Hmac(data []byte, secret string, a func() hash.Hash, e encoding) (string, error) {
+func Hmac(data []byte, secret string, a func() hash.Hash) Hash {
 	h := hmac.New(a, []byte(secret))
-	h.Write(data)
-	return encode(h.Sum(nil), e)
+	_, _ = h.Write(data)
+	return Hash(h.Sum(nil))
 }
 
 // Equal compares two hashes for equality without leaking timing information.

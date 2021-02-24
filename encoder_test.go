@@ -140,3 +140,13 @@ func TestEncode(t *testing.T) {
 		})
 	}
 }
+
+func TestEncode_Error(t *testing.T) {
+	result, err := encode([]byte("hello world"), 99)
+	if result != "" {
+		t.Errorf("Expected result: %s, got %s", "", result)
+	}
+	if err != ErrUnsupportedEncoding {
+		t.Errorf("Expected %v, got %v", ErrUnsupportedEncoding, err)
+	}
+}

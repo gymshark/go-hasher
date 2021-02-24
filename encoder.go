@@ -12,23 +12,31 @@ import (
 type encoding int
 
 const (
+	// encoding type helpers
 	Base64 encoding = iota
 	Base64UrlSafe
 	Base32
 	Hex
 )
 
-var strFuncs = [...]func([]byte) string{
-	Base64:        base64.StdEncoding.EncodeToString,
-	Base64UrlSafe: base64.URLEncoding.EncodeToString,
-	Base32:        base32.StdEncoding.EncodeToString,
-	Hex:           hex.EncodeToString,
-}
+type strFn func([]byte) string
 
-func encode(b []byte, e encoding) (string, error) {
-	if int(e) >= len(strFuncs) {
-		return "", errors.New("unsupported encoding")
+var (
+	strFns = [...]strFn{
+		Base64:        base64.StdEncoding.EncodeToString,
+		Base64UrlSafe: base64.URLEncoding.EncodeToString,
+		Base32:        base32.StdEncoding.EncodeToString,
+		Hex:           hex.EncodeToString,
 	}
 
-	return strFuncs[e](b), nil
+	// Errors returned by encoding functions
+	ErrUnsupportedEncoding = errors.New("unsupported encoding")
+)
+
+func encode(b []byte, e encoding) (string, error) {
+	if int(e) >= len(strFns) {
+		return "", ErrUnsupportedEncoding
+	}
+
+	return strFns[e](b), nil
 }
