@@ -1,10 +1,10 @@
 // Copyright 2020 Gymshark Ltd.
 
-// A hashing wrapper around some common hashing functions with customizable encoding
+// Package hasher is a utility wrapper around some common hashing functions with customizable encoding
 //
 // Supported encodings
 //
-// Base64, Base64UrlSafe, Base32, Hex
+// Base64, Base64UrlSafe, Base32, Hex, Custom Encoding Function
 //
 // If an encoding is supplied that is not recognised an "unsupported encoding" error will be returned with
 // an empty string in the hash value, so it is recommended to use the constants supplied with this package
