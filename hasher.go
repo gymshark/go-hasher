@@ -11,13 +11,11 @@
 package hasher
 
 import (
-	"crypto/hmac"
 	"crypto/md5"
 	"crypto/sha1"
 	"crypto/sha256"
 	"crypto/sha512"
 	"crypto/subtle"
-	"hash"
 
 	"golang.org/x/crypto/sha3"
 )
@@ -51,13 +49,6 @@ func Sha3(data []byte) Hash {
 func Md5(data []byte) Hash {
 	sum := md5.Sum(data)
 	return Hash(sum[:])
-}
-
-// Hmac returns a new HMAC hash using the given hash.Hash type and key.
-func Hmac(data []byte, secret string, a func() hash.Hash) Hash {
-	h := hmac.New(a, []byte(secret))
-	_, _ = h.Write(data)
-	return Hash(h.Sum(nil))
 }
 
 // Equal compares two hashes for equality without leaking timing information.
