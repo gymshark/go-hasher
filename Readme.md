@@ -9,13 +9,13 @@ If any issues/bugs are found please raise an issue on github here: [Issue Tracke
 
 - [Docs](#docs)
 - [Getting Started](#getting-started)
-    - [Basic Usage](#basic-usage)
-    - [Hmac Usage](#hmac-usage)
-    - [Custom Encoder Usage](#custom-encoder)
+  - [Basic Usage](#basic-usage)
+  - [Hmac Usage](#hmac-usage)
+  - [Custom Encoder Usage](#custom-encoder)
 - [Functions](#functions)
-    - [Hash Functions](#hash-functions)
-    - [Hmac Functions](#hmac-functions)
-    - [Encoding Functions](#encoding-functions)
+  - [Hash Functions](#hash-functions)
+  - [Hmac Functions](#hmac-functions)
+  - [Encoding Functions](#encoding-functions)
 
 ## Docs
 Online: https://pkg.go.dev/github.com/gymshark/go-hasher
