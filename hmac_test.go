@@ -43,47 +43,38 @@ var hmacTests = []hmacTest{
 	},
 }
 
-func TestHmac(t *testing.T) {
-	t.Parallel()
-	var secretKey = "test"
-
+func TestHmacMd5(t *testing.T) {
 	for _, ht := range hmacTests {
-		confs := []struct {
-			name   string
-			hashed []byte
-			hashFn func(data []byte, secret string) Hash
-		}{
-			{
-				ht.name + ":hmac-md5",
-				ht.md5,
-				HmacMd5,
-			},
-			{
-				ht.name + ":hmac-sha1",
-				ht.sha1,
-				HmacSha1,
-			},
-			{
-				ht.name + ":hmac-sha256",
-				ht.sha256,
-				HmacSha256,
-			},
-			{
-				ht.name + ":hmac-sha512",
-				ht.sha512,
-				HmacSha512,
-			},
-		}
-
-		for _, conf := range confs {
-			t.Run(conf.name, func(t *testing.T) {
-				result := conf.hashFn([]byte(ht.decoded), secretKey)
-				if !bytes.Equal(result, conf.hashed) {
-					t.Errorf("Expected %v\nGot %v", conf.hashed, result)
-				}
-			})
-		}
+		runHmacTest(t, ht.name+":hmac-md5", ht.decoded, ht.md5, HmacMd5)
 	}
+}
+
+func TestHmacSha1(t *testing.T) {
+	for _, ht := range hmacTests {
+		runHmacTest(t, ht.name+":hmac-sha1", ht.decoded, ht.sha1, HmacSha1)
+	}
+}
+
+func TestHmacSha256(t *testing.T) {
+	for _, ht := range hmacTests {
+		runHmacTest(t, ht.name+":hmac-sha256", ht.decoded, ht.sha256, HmacSha256)
+	}
+}
+
+func TestHmacSha512(t *testing.T) {
+	for _, ht := range hmacTests {
+		runHmacTest(t, ht.name+":hmac-sha512", ht.decoded, ht.sha512, HmacSha512)
+	}
+}
+
+func runHmacTest(t *testing.T, name string, decoded string, encoded []byte, fn func(data []byte, secret string) Hash) {
+	t.Run(name, func(t *testing.T) {
+		var secretKey = "test"
+		result := fn([]byte(decoded), secretKey)
+		if !bytes.Equal(result, encoded) {
+			t.Errorf("Expected %v, got %v", encoded, result)
+		}
+	})
 }
 
 func ExampleHmacMd5() {
