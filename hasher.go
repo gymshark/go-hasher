@@ -20,15 +20,9 @@ import (
 	"golang.org/x/crypto/sha3"
 )
 
-// Sha512 returns a sha2-512 checksum
-func Sha512(data []byte) Hash {
-	sum := sha512.Sum512(data)
-	return sum[:]
-}
-
-// Sha256 returns a sha2-256 checksum
-func Sha256(data []byte) Hash {
-	sum := sha256.Sum256(data)
+// Md5 returns a md5 checksum
+func Md5(data []byte) Hash {
+	sum := md5.Sum(data)
 	return sum[:]
 }
 
@@ -38,17 +32,23 @@ func Sha1(data []byte) Hash {
 	return sum[:]
 }
 
+// Sha256 returns a sha2-256 checksum
+func Sha256(data []byte) Hash {
+	sum := sha256.Sum256(data)
+	return sum[:]
+}
+
+// Sha512 returns a sha2-512 checksum
+func Sha512(data []byte) Hash {
+	sum := sha512.Sum512(data)
+	return sum[:]
+}
+
 // Sha3 returns a sha3-256 checksum using the ShakeSum256 function
 func Sha3(data []byte) Hash {
 	sum := make([]byte, 64)
 	sha3.ShakeSum256(sum, data)
 	return sum
-}
-
-// Md5 returns a md5 checksum
-func Md5(data []byte) Hash {
-	sum := md5.Sum(data)
-	return sum[:]
 }
 
 // Equal compares two hashes for equality without leaking timing information.
