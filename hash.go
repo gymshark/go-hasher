@@ -6,6 +6,7 @@ import (
 	"encoding/hex"
 )
 
+// Hash allows the addition of encoding functions to the hashed data
 type Hash []byte
 
 func encode(b []byte, fn func(src []byte) string) string {
