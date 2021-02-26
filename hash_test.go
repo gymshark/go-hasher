@@ -148,7 +148,6 @@ func TestHash_Base64UrlSafe(t *testing.T) {
 }
 
 func TestHash_Encode(t *testing.T) {
-
 	binaryFunc := func(b []byte) string {
 		return fmt.Sprintf("%08b", b)
 	}
@@ -171,4 +170,33 @@ func runHashTest(t *testing.T, name string, expected string, fn func() string) {
 			t.Errorf("Expected %v, got %v", expected, result)
 		}
 	})
+}
+
+func ExampleHash_Encode() {
+	binaryFunc := func(b []byte) string {
+		return fmt.Sprintf("%08b", b)
+	}
+
+	h := Sha512([]byte("hello")).Encode(binaryFunc)
+	fmt.Println(h)
+}
+
+func ExampleHash_Hex() {
+	h := Sha512([]byte("hello")).Hex()
+	fmt.Println(h)
+}
+
+func ExampleHash_Base32() {
+	h := Sha1([]byte("hello")).Base32()
+	fmt.Println(h)
+}
+
+func ExampleHash_Base64() {
+	h := Sha512([]byte("hello")).Base64()
+	fmt.Println(h)
+}
+
+func ExampleHash_Base64UrlSafe() {
+	h := Sha512([]byte("hello")).Base64UrlSafe()
+	fmt.Println(h)
 }
