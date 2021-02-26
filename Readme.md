@@ -1,47 +1,30 @@
-# Gymshark Hasher
-`import "github.com/gymshark/go-hasher"`
+# Go Hasher
+A wrapper around some common hashing functions with customizable encoding
 
-A hashing wrapper around some common hashing functions with customizable encoding
+If any issues/bugs are found please raise an issue on github here: [Issue Tracker](https://github.com/gymshark/go-hasher/issues)
 
-If any issues/bugs are found please raise an issue on github here: https://github.com/gymshark/go-hasher/issues
+---
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/3b11a652b77e440da627d4bdcffafac1)](https://www.codacy.com/gh/gymshark/go-hasher/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gymshark/go-hasher&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/3b11a652b77e440da627d4bdcffafac1)](https://www.codacy.com/gh/gymshark/go-hasher/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gymshark/go-hasher&amp;utm_campaign=Badge_Coverage)
+
+- [Docs](#docs)
+- [Getting Started](#getting-started)
+    - [Basic Usage](#basic-usage)
+    - [Hmac Usage](#hmac-usage)
+    - [Custom Encoder Usage](#custom-encoder)
+- [Functions](#functions)
+    - [Hash Functions](#hash-functions)
+    - [Hmac Functions](#hmac-functions)
+    - [Encoding Functions](#encoding-functions)
 
 ## Docs
 Online: https://pkg.go.dev/github.com/gymshark/go-hasher
 
 Local: `godoc -http=:6060`
 
-## Functions
-### Available hash functions
-```go
-Md5([]byte)
-Sha1([]byte)
-Sha256([]byte)
-Sha512([]byte)
-Sha3([]byte)
-```
+## Getting started
+`import "github.com/gymshark/go-hasher"`
 
-### Available hmac functions
-```go
-HmacMd5([]byte, string)
-HmacSha1([]byte, string)
-HmacSha256([]byte, string)
-HmacSha512([]byte)
-```
-
-There is no sha3 hmac function due to sha3 being resistant to length extension attack, you can append your key to your data then use the `Sha3([]byte)` function to generate your hash.
-
-> 𝑚𝑎𝑐=SHA3(𝑘||𝑚) is a secure MAC if 𝑘 is a fixed-length key. This is an explicit design goal of SHA3.
-
-### Available encoding functions
-```go
-Hex() // base16
-Base32()
-Base64()
-Base64UrlSafe()
-Encode(func([]byte) string) //allows custom encoding
-```
-
-## Usage
 ### Basic usage
 ```go
 import "github.com/gymshark/go-hasher"
@@ -70,7 +53,6 @@ func main() {
 ```
 
 ### Custom Encoder
-
 This allows you to pass a func with the signature of `func ([]byte) string` to the encoder when the lib may not supply a helper function for your needs
 
 ```go
@@ -86,4 +68,35 @@ func main() {
     h := hasher.Sha1([]byte("hello world.")).Encode(encodingFn)
     fmt.Println(h) //encoded hash result of custom function
 }
+```
+
+## Functions
+### Hash functions
+```go
+Md5([]byte)
+Sha1([]byte)
+Sha256([]byte)
+Sha512([]byte)
+Sha3([]byte)
+```
+
+### Hmac functions
+```go
+HmacMd5([]byte, string)
+HmacSha1([]byte, string)
+HmacSha256([]byte, string)
+HmacSha512([]byte)
+```
+
+There is no Sha3 hmac function due to Sha3 being resistant to length extension attacks, you can append your secret key to your data then use `Sha3([]byte)` to generate your hash data.
+
+> 𝑚𝑎𝑐=SHA3(𝑘||𝑚) is a secure MAC if 𝑘 is a fixed-length key. This is an explicit design goal of SHA3.
+
+### Encoding functions
+```go
+Hex() // base16
+Base32()
+Base64()
+Base64UrlSafe()
+Encode(func([]byte) string) //allows custom encoding
 ```
