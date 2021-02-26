@@ -23,32 +23,32 @@ import (
 // Sha512 returns a sha2-512 checksum
 func Sha512(data []byte) Hash {
 	sum := sha512.Sum512(data)
-	return Hash(sum[:])
+	return sum[:]
 }
 
 // Sha256 returns a sha2-256 checksum
 func Sha256(data []byte) Hash {
 	sum := sha256.Sum256(data)
-	return Hash(sum[:])
+	return sum[:]
 }
 
 // Sha1 returns a sha1 checksum
 func Sha1(data []byte) Hash {
 	sum := sha1.Sum(data)
-	return Hash(sum[:])
+	return sum[:]
 }
 
 // Sha3 returns a sha3-256 checksum using the ShakeSum256 function
 func Sha3(data []byte) Hash {
 	sum := make([]byte, 64)
 	sha3.ShakeSum256(sum, data)
-	return Hash(sum)
+	return sum
 }
 
 // Md5 returns a md5 checksum
 func Md5(data []byte) Hash {
 	sum := md5.Sum(data)
-	return Hash(sum[:])
+	return sum[:]
 }
 
 // Equal compares two hashes for equality without leaking timing information.

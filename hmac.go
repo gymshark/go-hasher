@@ -32,5 +32,5 @@ func HmacSha512(data []byte, secret string) Hash {
 func mac(data []byte, secret string, a func() hash.Hash) Hash {
 	h := hmac.New(a, []byte(secret))
 	_, _ = h.Write(data)
-	return Hash(h.Sum(nil))
+	return h.Sum(nil)
 }
