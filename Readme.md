@@ -6,6 +6,10 @@ If any issues/bugs are found please raise an issue on github here: [Issue Tracke
 ---
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/3b11a652b77e440da627d4bdcffafac1)](https://www.codacy.com/gh/gymshark/go-hasher/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gymshark/go-hasher&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/3b11a652b77e440da627d4bdcffafac1)](https://www.codacy.com/gh/gymshark/go-hasher/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=gymshark/go-hasher&amp;utm_campaign=Badge_Coverage)
+[![GoReportCard Badge](https://goreportcard.com/badge/github.com/gymshark/go-hasher)](https://goreportcard.com/report/github.com/gymshark/go-hasher)
+[![Issues Open Badge](https://img.shields.io/github/issues/gymshark/go-hasher)](https://github.com/gymshark/go-hasher)
+[![License](https://img.shields.io/github/license/gymshark/go-hasher)](https://github.com/gymshark/go-hasher)
+[![Go version](https://img.shields.io/github/go-mod/go-version/gymshark/go-hasher/master?label=Go%20Version)](https://github.com/gymshark/go-hasher)
 
 - [Docs](#docs)
 - [Getting Started](#getting-started)
