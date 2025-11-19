@@ -1,5 +1,7 @@
 module github.com/gymshark/go-hasher
 
-go 1.15
+go 1.24.0
 
-require golang.org/x/crypto v0.0.0-20200622213623-75b288015ac9
+require golang.org/x/crypto v0.45.0
+
+require golang.org/x/sys v0.38.0 // indirect
